@@ -1,0 +1,37 @@
+THE GOLDEN SIP: FIX FOR MENU CHANGES NOT SAVING
+================================================
+You only need to add ONE new file and replace ONE file. Nothing else changes.
+
+WHOLE WEBSITE (this zip): upload ALL files and folders to your GitHub repo root (keep the api folder).
+LOGIN: email lambhateishwari@gmail.com OR phone 7559492970, password TheGoldenSip@182006
+
+FILES HERE
+ 1. app.js                              -> REPLACES the app.js in your GitHub repo
+ 2. api/[route].js                      -> NEW file (the server part). Name has square brackets.
+    COPY-THIS-into-api-route.js.txt     -> same code as plain text, easy to copy on a phone
+
+STEP 1: Replace app.js in GitHub
+  GitHub repo -> tap  app.js  -> pencil (edit) icon -> select all -> delete -> paste the new app.js -> "Commit changes".
+  (Or: Add file -> Upload files -> choose the new app.js -> Commit. Same name replaces the old one.)
+
+STEP 2: Add the server file in GitHub
+  GitHub repo main page -> Add file -> Create new file.
+  In the name box type exactly:   api/[route].js
+  (When you type the "/" GitHub makes the folder "api" for you.)
+  Paste ALL the text from COPY-THIS-into-api-route.js.txt into the big box. -> Commit changes.
+  CHECK: the repo main page must now show a folder named  api  next to index.html.
+
+STEP 3: Vercel (the project that owns your website address)
+  a) Storage -> Marketplace -> Upstash Redis (free) -> Connect to this project.
+  b) Settings -> Environment Variables -> add   SESSION_SECRET   =  any long random text  -> Save.
+  c) Deployments -> latest deployment -> three dots -> Redeploy.
+  Also check Settings -> Git points to THIS repo, and Settings -> General -> Root Directory is empty.
+
+STEP 4: Test
+  Open   YOUR-SITE.vercel.app/api/health   -> it must show   {"db":true}
+  Then open  YOUR-SITE.vercel.app/#owner , sign in (same email/phone + password as before).
+  A green bar at the top of the owner page = saving works. Change a price, then open the site on another phone:
+  the new price is there. Use the bin icon (tap twice) to delete a dish or a category.
+
+IF /api/health SHOWS "404 NOT_FOUND": the api folder is not in the repo root or Vercel is using a different repo.
+IF IT SHOWS {"db":false}: do Step 3a and 3c.
